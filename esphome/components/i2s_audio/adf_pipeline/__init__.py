@@ -50,6 +50,12 @@ CONFIG_SCHEMA_IN = CONFIG_SCHEMA_I2S_READER.extend(
     }
 )
 
+CONFIG_SCHEMA_EQ = cv.Schema(
+    {
+        cv.GenerateID(): cv.declare_id(esp_adf.ADFEqualizer),
+    }
+)
+
 CONFIG_SCHEMA_OUT = CONFIG_SCHEMA_I2S_WRITER.extend(
     {
         cv.GenerateID(): cv.declare_id(ADFElementI2SOut),
@@ -62,6 +68,7 @@ CONFIG_SCHEMA = cv.typed_schema(
     {
         I2S_AUDIO_IN: CONFIG_SCHEMA_IN,
         I2S_AUDIO_OUT: CONFIG_SCHEMA_OUT,
+        "equalizer": CONFIG_SCHEMA_EQ,  # equalizer should've been a constant... but let's get it working first
     },
     lower=True,
     space="-",

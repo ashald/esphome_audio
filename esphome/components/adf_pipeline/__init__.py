@@ -49,6 +49,9 @@ ADF_PIPELINE_CONTROLLER_SCHEMA = cv.Schema(
 )
 
 ADFResampler = esp_adf_ns.class_("ADFResampler", ADFPipelineProcess, ADFPipelineElement)
+# It's probably not the right place to define this class... or maybe it is
+# Inheriting it from Component so that we can assign an addressable ID to it to call functions on it
+ADFEqualizer = esp_adf_ns.class_("ADFEqualizer", ADFPipelineProcess, ADFPipelineElement, cg.Component)
 
 
 async def setup_pipeline_controller(cntrl, config: dict) -> None:
